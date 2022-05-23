@@ -1,4 +1,19 @@
 ---
-- name: "{{ ROLENAME_task_prefix }}"
+- name: "{{ zookeeper_task_prefix }} Create group"
+  ansible.builtin.group:
+    name: "{{ zookeeper_group }}"
+    state: present
 
+- name: "{{ zookeeper_task_prefix }} Create user"
+  ansible.builtin.user:
+    name: "{{ zookeeper_user }}"
+    shell: "{{ zookeeper_user_shell }}"
+    group: "{{ zookeeper_group }}""
+    state: present
+
+- name: "{{ zookeeper_task_prefix }} Download tarball"
+  ansible.builtin.get_url:
+    url: "{{ zookeeper_download_url_file }}"
+    dest: "{{ zookeeper_path_tarball }}"
+    checksum: "{{ zookeeper_download_checksum }}"
 ...

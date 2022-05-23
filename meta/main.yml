@@ -1,19 +1,17 @@
 ---
 galaxy_info:
-  author: AUTHORNAME
-  description: Ansible role does ...
-  role_name: ROLENAME
+  author: Valentin Gostev
+  description: Role deploys Apache ZooKeeper
+  role_name: zookeeper
   namespace: almaops
   license: MIT
   min_ansible_version: 2.10
   platforms:
     - name: Ubuntu
       versions:
-        - all
-    - name: Debian
-      versions:
-        - all
+        - focal
   galaxy_tags:
-    - todo
+    - apache
+    - zookeeper
 dependencies: []
 ...

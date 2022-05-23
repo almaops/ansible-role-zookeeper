@@ -1,4 +1,19 @@
 ---
-ROLENAME_task_prefix: "=== ROLENAME ==="
+zookeeper_task_prefix: "=== ZOOKEEPER ==="
 
+# Common settings
+zookeeper_version: "3.8.0"
+zookeeper_group: "zookeeper"
+zookeeper_user: "zookeeper"
+zookeeper_user_shell: "/usr/sbin/nologin"
+zookeeper_download_url_base: "https://archive.apache.org/dist/zookeeper"
+zookeeper_download_url_file: "{{ zookeeper_download_url_base }}/zookeeper-{{ zookeeper_version }}/apache-zookeeper-{{ zookeeper_version }}-bin.tar.gz"
+zookeeper_download_checksum: "sha512:{{ zookeeper_download_url_base }}/zookeeper-{{ zookeeper_version }}/apache-zookeeper-{{ zookeeper_version }}-bin.tar.gz.sha512"
+
+# Path settings
+zookeeper_path_base: "/opt"
+zookeeper_path_tarball: "{{ zookeeper_path_base }}/zookeeper-{{ zookeeper_version }}.tar.gz"
+zookeeper_path_install: "{{ zookeeper_path_base }}/zookeeper"
+zookeeper_path_lib: "/var/lib/zookeeper"
+zookeeper_path_log: "/var/log/zookeeper"
 ...
