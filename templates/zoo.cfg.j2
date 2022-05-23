@@ -3,7 +3,6 @@ initLimit={{ zookeeper_conf_initLimit }}
 syncLimit={{ zookeeper_conf_syncLimit }}
 dataDir={{ zookeeper_conf_dataDir }}
 clientPort={{ zookeeper_conf_clientport }}
-
 clientPortAddress={{ zookeeper_conf_clientportaddress }}
 maxClientCnxns={{ zookeeper_conf_maxClientCnxns }}
 
@@ -17,3 +16,6 @@ metricsProvider.exportJvmInfo={{ zookeeper_conf_metricsprovider_exportjvminfo }}
 
 {{ zookeeper_conf_extra }}
 
+{% for server in groups[zookeeper_group_name] %}
+server.{{ hostvars[server].zk_id }}={{ hostvars[server].backnet_ip }}:{{ zookeeper_bind_port_peer }}:{{ zookeeper_bind_port_leader }}
+{% endfor %}
