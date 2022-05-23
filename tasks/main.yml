@@ -8,7 +8,7 @@
   ansible.builtin.user:
     name: "{{ zookeeper_user }}"
     shell: "{{ zookeeper_user_shell }}"
-    group: "{{ zookeeper_group }}""
+    group: "{{ zookeeper_group }}"
     state: present
 
 - name: "{{ zookeeper_task_prefix }} Download tarball"
