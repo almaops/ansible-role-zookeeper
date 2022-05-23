@@ -10,11 +10,43 @@ zookeeper_download_url_base: "https://archive.apache.org/dist/zookeeper"
 zookeeper_download_url_file: "{{ zookeeper_download_url_base }}/zookeeper-{{ zookeeper_version }}/apache-zookeeper-{{ zookeeper_version }}-bin.tar.gz"
 zookeeper_download_checksum: "sha512:{{ zookeeper_download_url_base }}/zookeeper-{{ zookeeper_version }}/apache-zookeeper-{{ zookeeper_version }}-bin.tar.gz.sha512"
 
+# Network settings
+zookeeper_bind_addr: "127.0.0.1"
+zookeeper_bind_addr_metrics: "127.0.0.1"
+zookeeper_bind_addr_client: ""
+zookeeper_bind_port_metrics: "7000"
+zookeeper_bind_port_client: "2181"
+zookeeper_bind_port_peer: "2888"
+zookeeper_bind_port_leader: "3888"
+
+# Templates
+zookeeper_template_config: "zoo.cfg.j2"
+
+
 # Path settings
 zookeeper_path_base: "/opt"
 zookeeper_path_tarball: "{{ zookeeper_path_base }}/zookeeper-{{ zookeeper_version }}.tar.gz"
 zookeeper_path_unpacked: "{{ zookeeper_path_base }}/apache-zookeeper-{{ zookeeper_version }}-bin/"
 zookeeper_path_install: "{{ zookeeper_path_base }}/zookeeper"
-zookeeper_path_lib: "/var/lib/zookeeper"
+zookeeper_path_config: "{{ zookeeper_path_install }}/conf"
+zookeeper_path_data: "/srv/zookeeper"
 zookeeper_path_log: "/var/log/zookeeper"
+zookeeper_path_java: "/usr/lib/jvm/java-11-openjdk-amd64"
+
+# ZooKeeper configuration
+zookeeper_conf_ticktime: "2000"
+zookeeper_conf_initLimit: "10"
+zookeeper_conf_syncLimit: "5"
+zookeeper_conf_dataDir: "{{ zookeeper_path_data }}"
+zookeeper_conf_clientport: "{{ zookeeper_bind_port_client }}"
+zookeeper_conf_clientportaddress: "{{ zookeeper_bind_addr_client }}"
+zookeeper_conf_maxClientCnxns: "60"
+zookeeper_conf_autopurge_snapretaincount: "3"
+zookeeper_conf_autopurge_purgeinterval: "1"
+zookeeper_conf_metricsprovider_enabled: true
+zookeeper_conf_metricsprovider_class: "org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider"
+zookeeper_conf_metricsprovider_httphost: "{{ zookeeper_bind_addr_metrics }}"
+zookeeper_conf_metricsprovider_httpport: "{{ zookeeper_bind_port_metrics }}"
+zookeeper_conf_metricsprovider_exportjvminfo: "true"
+zookeeper_conf_extra: ""
 ...

@@ -28,5 +28,20 @@
     src: "{{ zookeeper_path_unpacked }}"
     dest: "{{ zookeeper_path_install }}"
     remote_src: true
-# - name: "{{ zookeeper_task_prefix }} "
+
+- name: "{{ zookeeper_task_prefix }} Create data and log directories"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ zookeeper_user }}"
+    group: "{{ zookeeper_group }}"
+    mode: '0755'
+  loop:
+    - "{{ zookeeper_path_data }}"
+    - "{{ zookeeper_path_log }}"
+
+- name: "{{ zookeeper_task_prefix }} Put config file"
+  ansible.builtin.template:
+    src: "{{ zookeeper_template_config }}"
+    dest: "{{ zookeeper_path_config }}/zoo.cfg"
 ...
