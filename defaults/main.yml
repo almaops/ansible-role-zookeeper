@@ -12,8 +12,8 @@ zookeeper_download_checksum: "sha512:{{ zookeeper_download_url_base }}/zookeeper
 
 # Network settings
 zookeeper_bind_addr: "127.0.0.1"
-zookeeper_bind_addr_metrics: "127.0.0.1"
-zookeeper_bind_addr_client: ""
+zookeeper_bind_addr_metrics: "{{ zookeeper_bind_addr }}"
+zookeeper_bind_addr_client: "{{ zookeeper_bind_addr }}"
 zookeeper_bind_port_metrics: "7000"
 zookeeper_bind_port_client: "2181"
 zookeeper_bind_port_peer: "2888"
