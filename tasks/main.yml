@@ -16,4 +16,17 @@
     url: "{{ zookeeper_download_url_file }}"
     dest: "{{ zookeeper_path_tarball }}"
     checksum: "{{ zookeeper_download_checksum }}"
+
+- name: "{{ zookeeper_task_prefix }} Unpack tarball"
+  ansible.builtin.unarchive:
+    src: "{{ zookeeper_path_tarball }}"
+    dest: "{{ zookeeper_path_base }}"
+    remote_src: true
+
+- name: "{{ zookeeper_task_prefix }} Copy binaries"
+  ansible.builtin.copy:
+    src: "{{ zookeeper_path_unpacked }}"
+    dest: "{{ zookeeper_path_install }}"
+    remote_src: true
+# - name: "{{ zookeeper_task_prefix }} "
 ...
