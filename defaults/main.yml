@@ -22,7 +22,7 @@ zookeeper_bind_port_leader: "3888"
 
 # Templates
 zookeeper_template_config: "zoo.cfg.j2"
-
+zookeeper_template_systemd: "templates/zookeeper.service.j2"
 
 # Path settings
 zookeeper_path_base: "/opt"
@@ -33,6 +33,14 @@ zookeeper_path_config: "{{ zookeeper_path_install }}/conf"
 zookeeper_path_data: "/srv/zookeeper"
 zookeeper_path_log: "/var/log/zookeeper"
 zookeeper_path_java: "/usr/lib/jvm/java-11-openjdk-amd64"
+zookeeper_path_systemd: "/etc/systemd/system/zookeeper.service"
+
+# Systemd
+zookeeper_systemd_name: "zookeeper.service"
+zookeeper_systemd_enabled: true
+zookeeper_systemd_masked: false
+zookeeper_systemd_daemon_reload: true
+zookeeper_systemd_state: started
 
 # ZooKeeper configuration
 zookeeper_conf_ticktime: "2000"

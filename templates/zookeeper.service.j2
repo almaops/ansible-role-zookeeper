@@ -1,0 +1,16 @@
+[Unit]
+Description=Zookeeper Service
+
+[Service]
+LimitNOFILE=65535
+Type=forking
+User={{ zookeeper_user }}
+Group={{ zookeeper_group }}
+ExecStart={{ zookeeper_path_install }}/bin/zkServer.sh start
+StandardOutput=journal
+StandardError=journal
+Restart=always
+PIDFile={{ zookeeper_path_data }}/zookeeper_server.pid
+
+[Install]
+WantedBy=multi-user.target

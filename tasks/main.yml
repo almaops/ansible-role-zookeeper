@@ -44,4 +44,28 @@
   ansible.builtin.template:
     src: "{{ zookeeper_template_config }}"
     dest: "{{ zookeeper_path_config }}/zoo.cfg"
+
+- name: "{{ zookeeper_task_prefix }} Put id file"
+  ansible.builtin.template:
+    content: "{{ zk_id }}"
+    dest: "{{ zookeeper_path_data }}/myid"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: "{{ zookeeper_task_prefix }} Put service file"
+  ansible.builtin.template:
+    src: "{{ zookeeper_template_systemd }}"
+    dest: "{{ zookeeper_path_systemd }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: "{{ zookeeper_task_prefix }} Apply systemd unit"
+  ansible.builtin.systemd:
+    name: "{{ zookeeper_systemd_name }}"
+    enabled: "{{ zookeeper_systemd_enabled }}"
+    masked: "{{ zookeeper_systemd_masked }}"
+    state: "{{ zookeeper_systemd_state }}"
+    daemon_reload: "{{ zookeeper_systemd_daemon_reload }}"
 ...
