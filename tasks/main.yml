@@ -46,7 +46,7 @@
     dest: "{{ zookeeper_path_config }}/zoo.cfg"
 
 - name: "{{ zookeeper_task_prefix }} Put id file"
-  ansible.builtin.template:
+  ansible.builtin.copy:
     content: "{{ zk_id }}"
     dest: "{{ zookeeper_path_data }}/myid"
     owner: root
